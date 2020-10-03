@@ -18,7 +18,7 @@ void Merge (int f1, int f2, std::vector<int>& vec){
     }
     if (f2-f1+1 > 2) {
         int k = (f2 - f1 + 1) / 2;
-        int flag1 = f1, flag2 = f1 + k;//нужно создать ещё один вектор длины f2-f1+1 и записывать туда упорядоченные элементы, после обменть данные с исходным вектором
+        int flag1 = f1, flag2 = f1 + k;
         std::vector<int> mas(f2 - f1 + 1);
         int iterator = 0;
         while (flag1 <= f1 + k - 1 || flag2 <= f2) {
