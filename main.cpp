@@ -18,7 +18,7 @@ void Merge (int f1, int f2, std::vector<int>& vec){
     }
     if (f2-f1+1 > 2) {
         int k = (f2 - f1 + 1) / 2;
-        int flag1 = f1, flag2 = f1 + k;
+        int flag1 = f1, flag2 = f1 + k;//нужно создать ещё один вектор длины f2-f1+1 и записывать туда упорядоченные элементы, после обменть данные с исходным вектором
         std::vector<int> mas(f2 - f1 + 1);
         int iterator = 0;
         while (flag1 <= f1 + k - 1 || flag2 <= f2) {
@@ -50,28 +50,12 @@ void Merge (int f1, int f2, std::vector<int>& vec){
             vec[i] = mas[i-f1];
         }
     }
-    }
+}
 
-//cocktail sort
-int main() {
-
-    using std::cin;
-    using std::cout;
-    using std::endl;
-    using std::vector;
-
-    int l = 30;
-    std::srand(std::time(nullptr));
-    vector <int> arr(l);
-    for (int i = 0; i<l; i++) {
-        arr[i] = std::rand() % 201 - 100;
-        cout << arr[i] << ' ';
-    }
-    cout << endl;
-
+void CocktailSort(std::vector <int>& arr){
     bool flag = true;
     int iterator;
-    int GrH = l;
+    int GrH = arr.size();
     int GrL = 0;
     while (flag){
         flag = false;
@@ -97,34 +81,10 @@ int main() {
         }
         GrL++;
     }
+}
 
-    for (int i = 0; i<l; i++) {
-        cout << arr[i] << ' ';
-    }
-    cout <<endl;
-
-    //Merge sort
-    std::srand(std::time(nullptr));
-    vector <int> a1(l);
-    for (int i = 0; i<l; i++) {
-        a1[i] = std::rand() % 201 - 100;
-        cout << a1[i] << ' ';
-    }
-    cout << endl;
-
-    Merge(0, l-1, a1);
-    for(int i: a1)
-        cout << i << ' ';
-    cout << endl;
-
-    //Shell sort
-    std::srand(std::time(nullptr));
-    vector <int> a2(l);
-    for (int j = 0; j<l; j++) {
-        a2[j] = std::rand() % 201 - 100;
-        cout << a2[j] << ' ';
-    }
-    cout << endl;
+void ShellSort(std::vector <int>& a2){
+    int l = a2.size();
     int d=l/2;
     while (d>0){
         for (int i=0; i < d; i++)
@@ -136,6 +96,51 @@ int main() {
                 }
         d/=2;
     }
+}
+
+//cocktail sort
+int main() {
+
+    using std::cin;
+    using std::cout;
+    using std::endl;
+    using std::vector;
+
+    int l = 30;
+    std::srand(std::time(nullptr));
+    vector <int> arr(l);
+    for (int i = 0; i<l; i++) {
+        arr[i] = std::rand() % 201 - 100;
+        cout << arr[i] << ' ';
+    }
+    cout << endl;
+    CocktailSort(arr);
+    for (int i = 0; i<l; i++) {
+        cout << arr[i] << ' ';
+    }
+    cout <<endl;
+
+    //Merge sort
+    vector <int> a1(l);
+    for (int i = 0; i<l; i++) {
+        a1[i] = std::rand() % 201 - 100;
+        cout << a1[i] << ' ';
+    }
+    cout << endl;
+
+    Merge(0, a1.size()-1, a1);
+    for(int i: a1)
+        cout << i << ' ';
+    cout << endl;
+
+    //Shell sort
+    vector <int> a2(l);
+    for (int j = 0; j<l; j++) {
+        a2[j] = std::rand() % 201 - 100;
+        cout << a2[j] << ' ';
+    }
+    cout << endl;
+    ShellSort(a2);
     for(int i: a2)
         cout << i << ' ';
     cout << endl;
